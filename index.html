@@ -4,21 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Saklı Kelime</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <h1>Saklı Kelime</h1>
-  <div id="kelimeKutusu" class="hex-container"></div>
-  
-  <div class="input-container">
-    <input type="text" id="tahminInput" placeholder="Harf tahmin et" maxlength="1"/>
-    <button onclick="tahminEt()">Tahmin Et</button>
+  <audio id="music" autoplay loop>
+    <source src="background.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <h1 class="title">Saklı Kelime</h1>
+    <p class="description">Eksik harfi tahmin et!</p>
+
+    <div class="word-display" id="word-display">_ e l m e k</div>
+
+    <input type="text" id="guess-input" maxlength="1" placeholder="Bir harf gir" />
+    <button id="guess-button">Tahmin Et</button>
+
+    <p id="result-text"></p>
   </div>
-
-  <p id="mesaj"></p>
-
-  <audio id="dogruSes" src="dogru.mp3"></audio>
-  <audio id="yanlisSes" src="yanlis.mp3"></audio>
 
   <script src="script.js"></script>
 </body>

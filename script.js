@@ -1,48 +1,19 @@
-const kelimeler = ["ekmek", "kalem", "bardak", "çorap", "kitap"];
-let secilen = kelimeler[Math.floor(Math.random() * kelimeler.length)];
-let gorunen = secilen.replace(/[a-zçğıöşü]/gi, "_").split("");
+const kelime = "_elmek";
+const dogruHarf = "k";
 
-const kutu = document.getElementById("kelimeKutusu");
-const mesaj = document.getElementById("mesaj");
-const dogruSes = document.getElementById("dogruSes");
-const yanlisSes = document.getElementById("yanlisSes");
+document.getElementById("guess-button").addEventListener("click", () => {
+  const tahmin = document.getElementById("guess-input").value.toLowerCase();
+  const sonuc = document.getElementById("result-text");
 
-function guncelleKutular() {
-  kutu.innerHTML = "";
-  gorunen.forEach(harf => {
-    const div = document.createElement("div");
-    div.className = "hex";
-    div.textContent = harf;
-    kutu.appendChild(div);
-  });
-}
-
-guncelleKutular();
-
-function tahminEt() {
-  const harfInput = document.getElementById("tahminInput");
-  const harf = harfInput.value.toLowerCase();
-  harfInput.value = "";
-  
-  let bulundu = false;
-  for (let i = 0; i < secilen.length; i++) {
-    if (secilen[i] === harf) {
-      gorunen[i] = harf;
-      bulundu = true;
-    }
-  }
-
-  guncelleKutular();
-
-  if (bulundu) {
-    dogruSes.play();
-    mesaj.textContent = "Doğru tahmin!";
+  if (tahmin === dogruHarf) {
+    sonuc.textContent = "Tebrikler! Doğru tahmin!";
+    sonuc.style.color = "lightgreen";
+    new Audio("correct.mp3").play();
   } else {
-    yanlisSes.play();
-    mesaj.textContent = "Yanlış tahmin!";
+    sonuc.textContent = "Üzgünüm, yanlış harf.";
+    sonuc.style.color = "red";
+    new Audio("wrong.mp3").play();
   }
 
-  if (!gorunen.includes("_")) {
-    mesaj.textContent = "Tebrikler! Kelime: " + secilen;
-  }
-}
+  document.getElementById("guess-input").value = "";
+});
