@@ -20,8 +20,32 @@
   </div>
 
   <audio id="dogru-ses" src="dogru.mp3" preload="auto"></audio>
-  <audio id="yanlis-ses" src="yanlis.mp3" preload="auto"></audio>
+  <audio id="yanlis-ses" src="yanlis.mp3" preload="auto"></
+    
+<script>
+  const dogru = document.getElementById("dogru");
+  const yanlis = document.getElementById("yanlis");
 
-  <script src="script.js"></script>
-</body>
-</html>
+  const kelimeler = [
+    { kelime: "ekmek", ipucu: "E _ M E K" },
+    { kelime: "araba", ipucu: "A _ A B A" },
+    { kelime: "çiçek", ipucu: "Ç _ Ç E K" }
+    // İstediğin kadar ekleyebilirsin
+  ];
+
+  let aktifKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
+
+  document.getElementById("ipucu").innerText = "İpucu: " + aktifKelime.ipucu;
+
+  function tahminEt() {
+    const girilen = document.getElementById("tahmin").value.toLowerCase();
+    
+    if (girilen === aktifKelime.kelime) {
+      dogru.play();
+      document.getElementById("sonuc").innerText = "Doğru bildin!";
+    } else {
+      yanlis.play();
+      document.getElementById("sonuc").innerText = "Yanlış! Tekrar dene.";
+    }
+  }
+</script>
