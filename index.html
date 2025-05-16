@@ -8,14 +8,19 @@
 </head>
 <body>
   <div class="container">
-    <h1>Saklı Kelime</h1>
-    <p class="kelime" id="kelime"></p>
-    <input type="text" id="tahmin" placeholder="Harf ya da kelime tahmin et" maxlength="10" />
-    <button onclick="kontrolEt()">Gönder</button>
+    <h1 class="title">Saklı Kelime</h1>
+    <p class="description">Eksik harfi tahmin et!</p>
+
+    <div class="word-box" id="word-box">E _ M E K</div>
+
+    <input type="text" maxlength="1" id="harf-input" placeholder="Harf gir" />
+    <button id="tahmin-btn">Tahmin Et</button>
+
     <p id="sonuc"></p>
-    <audio id="dogruSes" src="ses/dogru.mp3"></audio>
-    <audio id="yanlisSes" src="ses/yanlis.mp3"></audio>
   </div>
+
+  <audio id="dogru-ses" src="dogru.mp3" preload="auto"></audio>
+  <audio id="yanlis-ses" src="yanlis.mp3" preload="auto"></audio>
 
   <script src="script.js"></script>
 </body>
