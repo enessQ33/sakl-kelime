@@ -2,22 +2,21 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SaklıKelime</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saklı Kelime</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>SaklıKelime</h1>
-    <p>Bir kelime tuttum. Tahmin et bakalım!</p>
-
-    <input type="text" id="guessInput" placeholder="Tahminini yaz..." autocomplete="off" />
-    <button id="guessBtn">Tahmin Et</button>
-
-    <p id="message"></p>
-    <p id="score">Skor: 0</p>
+    <h1>Saklı Kelime</h1>
+    <p class="kelime" id="kelime"></p>
+    <input type="text" id="tahmin" placeholder="Harf ya da kelime tahmin et" maxlength="10" />
+    <button onclick="kontrolEt()">Gönder</button>
+    <p id="sonuc"></p>
+    <audio id="dogruSes" src="ses/dogru.mp3"></audio>
+    <audio id="yanlisSes" src="ses/yanlis.mp3"></audio>
   </div>
 
-  <script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
