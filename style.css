@@ -1,39 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0; padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#tahminButonu {
+  padding: 12px 24px;
+  font-size: 16px;
+  background: linear-gradient(145deg, #4caf50, #66bb6a);
   color: white;
-  user-select: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.container {
-  background: rgba(0,0,0,0.3);
-  padding: 30px 40px;
-  border-radius: 15px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
+#tahminButonu:hover {
+  transform: scale(1.05);
+  background: linear-gradient(145deg, #43a047, #81c784);
 }
-
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-.description {
-  font-size: 1.2rem;
-  margin-bottom:
