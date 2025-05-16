@@ -1,51 +1,25 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saklı Kelime</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1 class="title">Saklı Kelime</h1>
-    <p class="description">Eksik harfi tahmin et!</p>
 
-    <div class="word-box" id="word-box">E _ M E K</div>
+  <h1>Saklı Kelime</h1>
+  <p>Eksik harfi tahmin et ve kelimeyi çöz!</p>
 
-    <input type="text" maxlength="1" id="harf-input" placeholder="Harf gir" />
-    <button id="tahmin-btn">Tahmin Et</button>
+  <!-- Tahmin Kutusu ve Butonu -->
+  <input type="text" id="tahmin" placeholder="Kelimeyi tahmin et">
+  <button onclick="tahminEt()" id="tahminButonu">Tahmin Et</button>
 
-    <p id="sonuc"></p>
-  </div>
+  <!-- Sonuç alanı -->
+  <p id="sonuc"></p>
 
-  <audio id="dogru-ses" src="dogru.mp3" preload="auto"></audio>
-  <audio id="yanlis-ses" src="yanlis.mp3" preload="auto"></
-    
-<script>
-  const dogru = document.getElementById("dogru");
-  const yanlis = document.getElementById("yanlis");
+  <!-- Sesler için script -->
+  <script src="script.js"></script>
 
-  const kelimeler = [
-    { kelime: "ekmek", ipucu: "E _ M E K" },
-    { kelime: "araba", ipucu: "A _ A B A" },
-    { kelime: "çiçek", ipucu: "Ç _ Ç E K" }
-    // İstediğin kadar ekleyebilirsin
-  ];
-
-  let aktifKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
-
-  document.getElementById("ipucu").innerText = "İpucu: " + aktifKelime.ipucu;
-
-  function tahminEt() {
-    const girilen = document.getElementById("tahmin").value.toLowerCase();
-    
-    if (girilen === aktifKelime.kelime) {
-      dogru.play();
-      document.getElementById("sonuc").innerText = "Doğru bildin!";
-    } else {
-      yanlis.play();
-      document.getElementById("sonuc").innerText = "Yanlış! Tekrar dene.";
-    }
-  }
-</script>
+</body>
+</html>
