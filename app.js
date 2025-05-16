@@ -1,42 +1,56 @@
-function yeniOyun() {
+const kelimeler = [
+  "EKMEK",
+  "KARPUZ",
+  "ARABA",
+  "ÇİÇEK",
+  "BİSİKLET",
+  "KİTAP",
+  "KAPİ",
+  "YILDIZ"
+];
+
+// Şu anki kelime ve gizli hali
+let secilenKelime = "";
+let gizliKelime = [];
+
+// Ses elementleri
+const dogruSes = document.getElementById("dogru-ses");
+const yanlisSes = document.getElementById("yanlis-ses");
+
+const wordBox = document.getElementById("word-box");
+const sonuc = document.getElementById("sonuc");
+const input = document.getElementById("harf-input");
+const btn = document.getElementById("tahmin-btn");
+
+function kelimeHazirla() {
+  // Rastgele kelime seç
   secilenKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
-  harfler = secilenKelime.split('').map(harf => Math.random() > 0.5 ? '_' : harf);
-  guncelleGosterge();
-  document.getElementById('cevap').innerText = '';
-  document.getElementById('tahmin').value = '';
+  // Her harfi _ yap, aralarda boşluk bırak
+  gizliKelime = secilenKelime.split("").map(() => "_");
+  // İlk harfi gösterelim, hadi biraz ipucu olsun
+  gizliKelime[0] = secilenKelime[0];
+  gizliKelime[gizliKelime.length - 1] = secilenKelime[secilenKelime.length - 1];
+  guncelleGosterim();
+  sonuc.innerText = "";
 }
 
-function harfKontrol() {
-  const tahmin = document.getElementById('tahmin').value.toLowerCase();
-  let bulundu = false;
+function guncelleGosterim() {
+  wordBox.innerText = gizliKelime.join(" ");
+}
 
-  secilenKelime.split('').forEach((harf, i) => {
-    if (harf === tahmin && harfler[i] === '_') {
-      harfler[i] = harf;
-      bulundu = true;
-    }
-  });
-
-  if (bulundu) {
-    oynatSes('dogru');
-    if (!harfler.includes('_')) {
-      document.getElementById('cevap').innerText = 'Tebrikler! Kelimeyi bildin.';
-      oynatSes('kazandin');
-    }
-  } else {
-    oynatSes('yanlis');
+function tahminEt() {
+  const tahmin = input.value.toUpperCase();
+  if (!tahmin || tahmin.length !== 1 || !/[A-ZÇĞİÖŞÜ]/.test(tahmin)) {
+    sonuc.innerText = "Lütfen geçerli bir harf gir.";
+    return;
   }
-
-  guncelleGosterge();
-  document.getElementById('tahmin').value = '';
-}
-
-function oynatSes(tip) {
-  let ses = new Audio();
-  if (tip === 'dogru') ses.src = 'dogru.mp3';
-  else if (tip === 'yanlis') ses.src = 'yanlis.mp3';
-  else if (tip === 'kazandin') ses.src = 'kazandin.mp3';
-  ses.play();
-}
-
-window.onload = yeniOyun;
+  let dogruTahmin = false;
+  for (let i = 1; i < secilenKelime.length - 1; i++) {
+    if (secilenKelime[i] === tahmin && gizliKelime[i] === "_") {
+      gizliKelime[i] = tahmin;
+      dogruTahmin = true;
+    }
+  }
+  if (dogruTahmin) {
+    dogruSes.play();
+    sonuc.innerText
