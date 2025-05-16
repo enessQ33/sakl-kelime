@@ -1,15 +1,46 @@
-#tahminButonu {
-  padding: 12px 24px;
-  font-size: 16px;
-  background: linear-gradient(145deg, #4caf50, #66bb6a);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  text-align: center;
+  padding: 50px;
+  color: #fff;
 }
 
-#tahminButonu:hover {
-  transform: scale(1.05);
-  background: linear-gradient(145deg, #43a047, #81c784);
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+#kelimeKutusu {
+  font-size: 36px;
+  margin-bottom: 20px;
+  letter-spacing: 10px;
+}
+
+input {
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  margin: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #ddd;
+}
+
+#mesaj {
+  margin-top: 20px;
+  font-size: 24px;
 }
