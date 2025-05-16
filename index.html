@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Saklı Kelime</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <h1>Saklı Kelime</h1>
-  <p>Eksik harfi tahmin et ve kelimeyi çöz!</p>
+  <div id="kelimeKutusu"></div>
+  <input type="text" id="tahminInput" placeholder="Bir harf gir" maxlength="1"/>
+  <button onclick="tahminEt()">Tahmin Et</button>
+  <p id="mesaj"></p>
 
-  <!-- Tahmin Kutusu ve Butonu -->
-  <input type="text" id="tahmin" placeholder="Kelimeyi tahmin et">
-  <button onclick="tahminEt()" id="tahminButonu">Tahmin Et</button>
-
-  <!-- Sonuç alanı -->
-  <p id="sonuc"></p>
-
-  <!-- Sesler için script -->
   <script src="script.js"></script>
-
 </body>
 </html>
