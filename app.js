@@ -1,20 +1,35 @@
-const gizliKelime = "ekmek"; // Bu kısmı dinamik yapabiliriz
-let denemeSayisi = 0;
+const kelimeler = ["ekmek", "kalem", "bardak", "çorap", "kitap"];
+let secilen = kelimeler[Math.floor(Math.random() * kelimeler.length)];
+let gorunen = secilen.replace(/[a-zçğıöşü]/gi, "_").split("");
+
+const dogruSes = new Audio("dogru.mp3");
+const yanlisSes = new Audio("yanlis.mp3");
+
+document.getElementById("kelimeKutusu").innerText = gorunen.join(" ");
 
 function tahminEt() {
-  const tahmin = document.getElementById("tahmin").value.toLowerCase();
-  const sonuc = document.getElementById("sonuc");
-  denemeSayisi++;
+  const harf = document.getElementById("tahminInput").value.toLowerCase();
+  let bulundu = false;
 
-  if (tahmin === gizliKelime) {
-    sonuc.innerText = `Tebrikler! ${denemeSayisi} denemede doğru bildin.`;
-    sonuc.style.color = "green";
-    // doğru ses
-    new Audio("dogru.mp3").play();
+  for (let i = 0; i < secilen.length; i++) {
+    if (secilen[i] === harf) {
+      gorunen[i] = harf;
+      bulundu = true;
+    }
+  }
+
+  document.getElementById("kelimeKutusu").innerText = gorunen.join(" ");
+  document.getElementById("tahminInput").value = "";
+
+  if (bulundu) {
+    dogruSes.play();
+    document.getElementById("mesaj").innerText = "Doğru tahmin!";
   } else {
-    sonuc.innerText = `Yanlış tahmin! Tekrar dene.`;
-    sonuc.style.color = "red";
-    // yanlış ses
-    new Audio("yanlis.mp3").play();
+    yanlisSes.play();
+    document.getElementById("mesaj").innerText = "Yanlış tahmin!";
+  }
+
+  if (!gorunen.includes("_")) {
+    document.getElementById("mesaj").innerText = "Tebrikler! Kelime: " + secilen;
   }
 }
