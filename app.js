@@ -1,37 +1,42 @@
-const words = [
-  "masa", "kalem", "araba", "elma", "kitap", 
-  "telefon", "bulut", "kedi", "bilgi", "zeka",
-  "deniz", "güneş", "yıldız", "orman", "şehir"
-];
+function yeniOyun() {
+  secilenKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
+  harfler = secilenKelime.split('').map(harf => Math.random() > 0.5 ? '_' : harf);
+  guncelleGosterge();
+  document.getElementById('cevap').innerText = '';
+  document.getElementById('tahmin').value = '';
+}
 
-let score = 0;
-let selectedWord = words[Math.floor(Math.random() * words.length)];
+function harfKontrol() {
+  const tahmin = document.getElementById('tahmin').value.toLowerCase();
+  let bulundu = false;
 
-const guessInput = document.getElementById("guessInput");
-const guessBtn = document.getElementById("guessBtn");
-const message = document.getElementById("message");
-const scoreDisplay = document.getElementById("score");
+  secilenKelime.split('').forEach((harf, i) => {
+    if (harf === tahmin && harfler[i] === '_') {
+      harfler[i] = harf;
+      bulundu = true;
+    }
+  });
 
-guessBtn.addEventListener("click", () => {
-  const guess = guessInput.value.trim().toLowerCase();
-  if (!guess) {
-    message.textContent = "Boş tahmin olmaz, yaz bir şey!";
-    message.style.color = "#f39c12"; // turuncu
-    return;
-  }
-
-  if (guess === selectedWord) {
-    score++;
-    message.textContent = `Tebrikler! Doğru bildin: ${selectedWord}`;
-    message.style.color = "#2ecc71"; // yeşil
-    scoreDisplay.textContent = `Skor: ${score}`;
-
-    // Yeni kelime seç
-    selectedWord = words[Math.floor(Math.random() * words.length)];
+  if (bulundu) {
+    oynatSes('dogru');
+    if (!harfler.includes('_')) {
+      document.getElementById('cevap').innerText = 'Tebrikler! Kelimeyi bildin.';
+      oynatSes('kazandin');
+    }
   } else {
-    message.textContent = "Yanlış tahmin, tekrar dene!";
-    message.style.color = "#e74c3c"; // kırmızı
+    oynatSes('yanlis');
   }
-  guessInput.value = "";
-  guessInput.focus();
-});
+
+  guncelleGosterge();
+  document.getElementById('tahmin').value = '';
+}
+
+function oynatSes(tip) {
+  let ses = new Audio();
+  if (tip === 'dogru') ses.src = 'dogru.mp3';
+  else if (tip === 'yanlis') ses.src = 'yanlis.mp3';
+  else if (tip === 'kazandin') ses.src = 'kazandin.mp3';
+  ses.play();
+}
+
+window.onload = yeniOyun;
